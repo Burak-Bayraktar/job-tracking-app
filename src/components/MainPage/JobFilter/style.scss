@@ -1,0 +1,22 @@
+:root {
+    --job-filter-input-margin: .625rem;
+}
+
+.job {
+    &-filter {
+        width: 100%;
+        background-color: #f1f4ff;
+        padding: .625rem;
+        box-sizing: border-box;
+
+        &-input {
+            width: 100%;
+            max-width: 68%;
+            margin-right: var(--job-filter-input-margin);
+        }
+
+        select {
+            width: calc(32% - var(--job-filter-input-margin));
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.create-new-job {
+  &__title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #222222;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__form {
+    display: flex;
+    width: 100%;
+    margin-top: 1.25rem;
+
+    .form-input {
+      display: flex;
+      flex-direction: column;
+      margin-right: .625rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .-inline-text {
+        padding-bottom: .25rem;
+        color: #75758b;
+      }
+
+      &.job {
+        &-name {
+          width: 70%;
+        }
+
+        &-priority {
+          width: 20%;
+        }
+
+        &-add-button {
+          width: 10%;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          height: var(--cnj-form-input-height);
+          margin-top: auto;
+          background-color: #2277e0;
+          color: white;
+          border-color: #2277e0;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

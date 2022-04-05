@@ -1,0 +1,19 @@
+.main-page {
+  display: flex;
+  flex-direction: column;
+
+  .job-container {
+    margin-top: 1.875rem;
+
+    .title {
+      color: #222222;
+      font-weight: 600;
+    }
+  }
+
+  .job-inner-container {
+    border: 1px solid #e4eafd;
+    margin-top: .625rem;
+
+  }
+}
