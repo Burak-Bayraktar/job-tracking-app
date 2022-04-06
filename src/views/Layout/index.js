@@ -7,10 +7,8 @@ import "./style.scss";
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="test">
-        <Header />
-        <div className="content-container">{children}</div>
-      </div>
+      <Header />
+      <div className="content-container">{children}</div>
       <Footer />
     </>
   );
@@ -19,4 +17,5 @@ const Layout = ({ children }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 export default Layout;

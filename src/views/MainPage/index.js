@@ -5,6 +5,7 @@ import JobList from "../../components/MainPage/JobList";
 import "../../components/MainPage/style.scss";
 
 const MainPage = () => {
+
   return (
     <section className="main-page">
       <CreateJobSection />

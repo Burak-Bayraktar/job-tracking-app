@@ -7,7 +7,7 @@ const JobItem = ({ name, priority }) => {
     <div className='job-list__item'>
         <div className='column__name'>{ name }</div>
         <div className='column__priority'>
-          <Label content="Urgent" className={`label-${priority.toLowerCase()}`} />
+          <Label content={priority} className={`label-${priority.toLowerCase()}`} />
         </div>
         <div className='column__action'>
           <button>E</button>
