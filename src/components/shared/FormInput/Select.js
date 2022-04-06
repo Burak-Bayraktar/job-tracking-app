@@ -1,19 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Select = ({ options, className }) => {
+const Select = ({ className, children, onChange, name }) => {
   return (
-    <select {...(className && { className })}>
-      {options.map((option, index) => (
-        <option key={index}>{option}</option>
-      ))}
+    <select
+      {...(onChange && { onChange })}
+      {...(className && { className })}
+      {...(name && { name })}
+    >
+      {children}
     </select>
   );
 };
 
 Select.propTypes = {
-  options: PropTypes.array.isRequired,
   className: PropTypes.string,
+  children: PropTypes.node,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default Select;
