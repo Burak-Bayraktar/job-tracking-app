@@ -6,7 +6,7 @@ import JobItem from "../JobItem";
 import "./style.scss";
 
 const JobList = () => {
-  const { jobList, NewJobModal, updateJobList, deleteJob } = useJob();
+  const { NewJobModal, updateJobList, deleteJob, filteredJobList } = useJob();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(NewJobModal);
@@ -28,7 +28,7 @@ const JobList = () => {
           <div className="action">Action</div>
         </div>
         <div className="job-list__content">
-          {jobList?.map((job) => {
+          {filteredJobList?.map((job) => {
             return (
               <JobItem
                 key={job.id}

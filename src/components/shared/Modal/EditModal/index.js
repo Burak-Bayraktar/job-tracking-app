@@ -48,7 +48,6 @@ const EditModal = ({
               onChange={(e) => handleChange(e)}
               value={selectedItem.priority.value}
               name="job-priority"
-              placeholder="test"
             >
               {jobPriorities?.map((item) => (
                 <option id={item.id} key={item.id}>
