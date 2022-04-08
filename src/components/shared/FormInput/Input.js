@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Input = ({ inputType, placeholder, className, onChange, name }) => {
+const Input = ({ inputType, placeholder, className, onChange, name, disabled }) => {
   return (
     <input 
       type={inputType}
@@ -9,6 +9,7 @@ const Input = ({ inputType, placeholder, className, onChange, name }) => {
       {...(placeholder && { placeholder })}
       {...(className && { className })}
       {...(name && { name })}
+      {...(disabled && { disabled })}
     />
   )
 }
@@ -21,4 +22,5 @@ Input.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,
+  disabled: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 }

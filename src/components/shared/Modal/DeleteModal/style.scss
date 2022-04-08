@@ -1,0 +1,16 @@
+.modal {
+    &-header {
+        margin: 10px 0;
+        font-weight: bold;
+        color: #e83d6d;
+    }
+
+    &-body {
+        display: flex;
+        justify-content: center;
+
+        .content {
+            font-weight: bold;
+        }
+    }
+}

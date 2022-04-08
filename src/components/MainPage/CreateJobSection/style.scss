@@ -11,8 +11,14 @@
 
   &__form {
     display: flex;
+    flex-direction: column;
     width: 100%;
     margin-top: 1.25rem;
+
+    &-values {
+      display: flex;
+      margin-bottom: 2rem;
+    }
 
     .form-input {
       display: flex;
@@ -38,10 +44,12 @@
         }
 
         &-add-button {
-          width: 10%;
+          width: 30%;
           display: inline-flex;
           justify-content: center;
+          margin: auto;
           align-items: center;
+          margin-top: 1.25rem;
           height: var(--cnj-form-input-height);
           margin-top: auto;
           background-color: #2277e0;

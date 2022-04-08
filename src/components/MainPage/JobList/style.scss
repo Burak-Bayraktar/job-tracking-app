@@ -54,12 +54,17 @@
       .column {
         &__name {
           width: var(--name-width);
+          margin: auto;
         }
+        
         &__priority {
           width: var(--priority-width);
+          margin: auto;
         }
+
         &__action {
           width: var(--action-width);
+          margin: auto;
         }
       }
     }

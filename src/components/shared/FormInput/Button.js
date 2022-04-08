@@ -1,13 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './button.scss'
 
-const Button = ({ className, onClick }) => {
+const Button = ({ className, onClick, text }) => {
+  const classNames = (className) => {
+    if (Array.isArray(className)) {
+      return className.join('')
+    }
+
+    return className
+  }
   return (
     <button
-      {...(className && { className })}
+      className={`button ${className ? classNames(className) : ''}`}
       {...(onClick && { onClick })}
     >
-      + Create
+      { text }
     </button>
   )
 }
@@ -15,6 +23,7 @@ const Button = ({ className, onClick }) => {
 Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
+  text: PropTypes.string.isRequired
 }
 
 export default Button
