@@ -1,6 +1,5 @@
 const express = require("express"),
   app = express(),
-  port = 5000,
   cors = require("cors");
 
 app.use(cors());
@@ -25,4 +24,4 @@ app.get("/priority", async (req, res) => {
   ]);
 });
 
-app.listen(port);
+app.listen(process.env.PORT || 3000);
