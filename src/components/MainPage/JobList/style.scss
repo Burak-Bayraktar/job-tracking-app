@@ -1,7 +1,9 @@
 :root {
   --name-width: 65%;
+  --name-width-mobile: 50%;
   --priority-width: 20%;
   --action-width: 15%;
+  --action-width-mobile: 30%;
   --column-pl: .625rem;
 }
 
@@ -21,12 +23,22 @@
 
     & > .name {
       width: var(--name-width);
+
+      @media only screen and (max-width: 600px) {
+        width: var(--name-width-mobile);
+      }
     }
+
     & > .priority {
       width: var(--priority-width);
     }
+    
     & > .action {
       width: var(--action-width);
+
+      @media only screen and (max-width: 600px) {
+        width: var(--action-width-mobile);
+      }
     }
   }
 
@@ -38,8 +50,7 @@
       height: auto;
 
       & > * {
-        padding: calc(var(--column-pl) * 1.5) 0 calc(var(--column-pl) * 1.5)
-          var(--column-pl);
+        padding: calc(var(--column-pl) * 1.5) 0 calc(var(--column-pl) * 1.5) var(--column-pl);
         font-size: .875rem;
       }
 
@@ -55,6 +66,10 @@
         &__name {
           width: var(--name-width);
           margin: auto;
+
+          @media only screen and (max-width: 600px) {
+            width: var(--name-width-mobile);
+          }
         }
         
         &__priority {
@@ -63,8 +78,21 @@
         }
 
         &__action {
+          display: flex;
+          gap: .625rem;
           width: var(--action-width);
           margin: auto;
+
+          @media only screen and (max-width: 600px) {
+            width: var(--action-width-mobile);
+          }
+
+          & > * {
+            width: 1.875rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }

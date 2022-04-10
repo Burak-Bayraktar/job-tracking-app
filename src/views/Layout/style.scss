@@ -4,5 +4,9 @@
     margin: auto;
     padding: 1.875rem 0;
     height: auto;
+
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
   }
 }

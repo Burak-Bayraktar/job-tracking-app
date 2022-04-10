@@ -16,6 +16,10 @@ export const JobProvider = ({ children }) => {
   const [jobPriorities, setJobPriorities] = useState([]);
   const [jobList, setJobList] = useState([]);
   const [filteredJobList, setFilteredJobList] = useState([]);
+  const [filters, setFilters] = useState({
+    searchTerm: "",
+    priorities: "",
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -32,6 +36,7 @@ export const JobProvider = ({ children }) => {
       const lsJobList = localStorage.getItem("job-list")
         ? JSON.parse(localStorage.getItem("job-list"))
         : [];
+
       setJobList(lsJobList);
       setFilteredJobList(lsJobList);
     }
@@ -86,6 +91,8 @@ export const JobProvider = ({ children }) => {
     createNewJob,
     updateJobList,
     deleteJob,
+    filters,
+    setFilters
   };
   return <Job.Provider value={values}>{children}</Job.Provider>;
 };

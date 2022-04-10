@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useJob } from "../../../../../contexts/JobContext";
 import Button from "../../../../shared/FormInput/Button";
+import FormElement from "../../../../shared/FormInput/FormElement";
 import Input from "../../../../shared/FormInput/Input";
 import Select from "../../../../shared/FormInput/Select";
 
@@ -15,7 +16,7 @@ const CreateJobForm = () => {
       createNewJob(newJob)
     }
   }, [formErrors])
-
+  
   const handleChange = (value, name) => {
     setNewJob((prevState) => ({
       ...prevState,
@@ -47,48 +48,43 @@ const CreateJobForm = () => {
   return (
     <div className="create-new-job__form">
       <div className="create-new-job__form-values">
-        <label className="form-input job-name">
-          <span className="-inline-text">Job Name</span>
+        <FormElement className="job-name" formErrors={formErrors?.job} title={"Job Name"}>
           <Input
             name="job"
             onChange={(e) => handleChange(e.target.value, e.target.name)}
             inputType="text"
           />
-          <div>{formErrors?.job}</div>
-        </label>
-        <label className="form-input job-priority">
-          <span className="-inline-text">Job Priority</span>
+        </FormElement>
+        <FormElement className="job-priority" formErrors={formErrors?.priority} title="Job Priority">
           <Select
-            name="priority"
-            onChange={({ target }) =>
-              handleChange(
-                {
-                  id: target.selectedOptions[0].attributes["precedence"].value,
-                  value: target.value,
-                },
-                target.name
-              )
-            }
-          >
-            <option selected disabled>
-              Select One
-            </option>
-            {jobPriorities?.map((item) => (
-              <option precedence={item.orderOfPrecedence} value={item.title} key={item.id}>
-                {item.title}
+              name="priority"
+              defaultValue={"Select One"}
+              onChange={({ target }) =>
+                handleChange(
+                  {
+                    id: target.selectedOptions[0].attributes["precedence"].value,
+                    value: target.value,
+                  },
+                  target.name
+                )
+              }
+            >
+              <option disabled>
+                Select One
               </option>
-            ))}
+              {jobPriorities?.map((item) => (
+                <option precedence={item.orderOfPrecedence} value={item.title} key={item.id}>
+                  {item.title}
+                </option>
+              ))}
           </Select>
-          <div>{formErrors?.priority}</div>
-        </label>
+        </FormElement>
       </div>
       <Button
         className="form-input job-add-button"
         onClick={() => submitForm(newJob)}
-        text="+ Create"
-      >
-        + Create
-      </Button>
+        content="+ Create"
+      />
     </div>
   );
 };

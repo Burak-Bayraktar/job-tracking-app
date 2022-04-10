@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './button.scss'
 
-const Button = ({ className, onClick, text }) => {
+const Button = ({ className, onClick, content }) => {
   const classNames = (className) => {
     if (Array.isArray(className)) {
       return className.join('')
@@ -15,7 +15,7 @@ const Button = ({ className, onClick, text }) => {
       className={`button ${className ? classNames(className) : ''}`}
       {...(onClick && { onClick })}
     >
-      { text }
+      { content }
     </button>
   )
 }
@@ -23,7 +23,7 @@ const Button = ({ className, onClick, text }) => {
 Button.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  text: PropTypes.string.isRequired
+  content: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired, PropTypes.number.isRequired])
 }
 
 export default Button

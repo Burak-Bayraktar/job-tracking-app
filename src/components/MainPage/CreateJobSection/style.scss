@@ -1,4 +1,8 @@
 .create-new-job {
+  @media only screen and (max-width: 600px) {
+    padding: 0 .625rem;
+  }
+
   &__title {
     font-weight: 600;
     font-size: 1.25rem;
@@ -18,33 +22,38 @@
     &-values {
       display: flex;
       margin-bottom: 2rem;
+
+      @media only screen and (max-width: 600px) {
+        flex-direction: column;
+      }
     }
 
     .form-input {
-      display: flex;
-      flex-direction: column;
-      margin-right: .625rem;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      .-inline-text {
-        padding-bottom: .25rem;
-        color: #75758b;
-      }
-
       &.job {
         &-name {
           width: 70%;
+
+          @media only screen and (max-width: 600px) {
+            width: 100%;
+          }
         }
 
         &-priority {
-          width: 20%;
+          width: 30%;
+
+          @media only screen and (max-width: 600px) {
+            margin-top: 1.875rem;
+          }
+        }
+
+        &-name,
+        &-priority {
+          @media only screen and (max-width: 600px) {
+            width: 100%;
+          }
         }
 
         &-add-button {
-          width: 30%;
           display: inline-flex;
           justify-content: center;
           margin: auto;

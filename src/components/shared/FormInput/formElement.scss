@@ -1,0 +1,14 @@
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin-right: .625rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .-inline-text {
+      padding-bottom: .25rem;
+      color: #75758b;
+    }
+}

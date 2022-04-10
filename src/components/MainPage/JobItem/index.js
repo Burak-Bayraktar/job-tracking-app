@@ -2,8 +2,10 @@ import React from 'react'
 import Label from '../../shared/FormInput/Label'
 import PropTypes from 'prop-types'
 import Button from '../../shared/FormInput/Button'
+import { ReactComponent as EditIcon } from '../../../assets/svg/EditIcon.svg'
+import { ReactComponent as DeleteIcon } from '../../../assets/svg/DeleteIcon.svg'
 
-const JobItem = ({ id, name, priority, setShowEditModal, setShowDeleteModal, setSelectedItem }) => {
+const JobItem = ({ id, name, priority, setShowEditModal, setShowDeleteModal, setSelectedItem }) => {  
   const updateItem = (id, name, priority) => {
     setSelectedItem(() => ({
       id: id,
@@ -27,7 +29,7 @@ const JobItem = ({ id, name, priority, setShowEditModal, setShowDeleteModal, set
 
     setShowDeleteModal(true)
   }
-
+  
   return (
     <div id={id} className='job-list__item'>
         <div className='column__name'>{ name }</div>
@@ -35,8 +37,8 @@ const JobItem = ({ id, name, priority, setShowEditModal, setShowDeleteModal, set
           <Label content={priority.value} className={`label-${priority.value.toLowerCase()}`} />
         </div>
         <div className='column__action'>
-          <Button onClick={() => updateItem(id, name, priority)} text='Edit' />
-          <Button onClick={() => deleteItem(id, name, priority)} text='Delete' />
+          <Button onClick={() => updateItem(id, name, priority)} content={<EditIcon />} />
+          <Button onClick={() => deleteItem(id, name, priority)} content={<DeleteIcon />} />
         </div>
     </div>
 

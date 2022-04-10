@@ -1,44 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useJob } from "../../../contexts/JobContext";
+import { FilterByPriority, FilterBySearchTerm } from "../../../utils";
 import Input from "../../shared/FormInput/Input";
 import Select from "../../shared/FormInput/Select";
 import "./style.scss";
 
 const JobFilter = () => {
-  const [filters, setFilters] = useState({
-    searchTerm: "",
-    priorities: "",
-  });
-
-  const { jobList, setFilteredJobList, jobPriorities } = useJob();
+  const { jobList, setFilteredJobList, jobPriorities, filters, setFilters } = useJob();
 
   const filterBySearchTerm = useCallback((arr) => {
-    return arr.filter((item) => {
-      if (!filters.searchTerm) {
-        return arr;
-      }
-
-      return item.job
-        .toLowerCase()
-        .includes(filters.searchTerm.toLowerCase()) && item.job;
-    });
+    return FilterBySearchTerm(arr, filters.searchTerm)
   }, [filters.searchTerm])
 
   const filterBySelectedOption = useCallback((arr) => {
-    return arr?.filter((item) => {
-      if (Object.keys(filters.priorities).length === 0 || filters.priorities.id === "0") {
-        return arr;
-      }
-
-      return item.priority.id === filters.priorities.id && item;
-    });
+    return FilterByPriority(arr, filters.priorities)
   }, [filters.priorities]) 
 
   useEffect(() => {
     const newList = [...jobList];
     const searchTermFiltered = filterBySearchTerm(newList) 
     const selectOptionFilter = filterBySelectedOption(searchTermFiltered)
-
     setFilteredJobList([...selectOptionFilter]);
   }, [filters, setFilteredJobList, jobList, filterBySearchTerm, filterBySelectedOption]);
 

@@ -15,9 +15,9 @@ const DeleteModal = ({show, setShow, deleteItem, selectedItem }) => {
       </Modal.Body>
       <Modal.Footer>
         <div className="buttons">
-          <Button text="Cancel" onClick={() => setShow(false)} className="cancel-button" />
+          <Button content="Cancel" onClick={() => setShow(false)} className="cancel-button" />
           <Button 
-            text="Delete" 
+            content="Delete" 
             onClick={() => {
               deleteItem(selectedItem)
               setShow(false)

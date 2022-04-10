@@ -61,17 +61,18 @@ const EditModal = ({
       <Modal.Footer>
         <div className="buttons">
           <Button
-            text="Cancel"
+            content="Cancel"
             className="cancel-button"
             onClick={() => setShow(false)}
           />
           <Button 
-          text="Save" 
-          onClick={() => {
-            updateJob(selectedItem)
-            setShow(false)
-          }} 
-          className="save-button" />
+            content="Save" 
+            onClick={() => {
+              updateJob(selectedItem)
+              setShow(false)
+            }} 
+            className="save-button" 
+          />
         </div>
       </Modal.Footer>
     </Modal>
