@@ -3,17 +3,19 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bc52b2ad-86af-4910-8899-6ad96813b643/deploy-status)](https://app.netlify.com/sites/effulgent-travesseiro-83132c/deploys)
 
 ## Installation
+To Run the project firstly you need to change an environment variable
 
-App requires a server to run properly.
-Install the dependencies and start the server.
-
-```sh
-cd server
-npm install
-nodemon app.js
+Run following command in project root
+```
+cp .env.example .env
 ```
 
-After you start the server, open up a new terminal stay in the project root and run following commands.
+and change *REACT_APP_API_URL* variable into
+```
+https://job-tracking-application.herokuapp.com/
+```
+
+To start the project run the following commands;
 ```
 npm install
 npm run

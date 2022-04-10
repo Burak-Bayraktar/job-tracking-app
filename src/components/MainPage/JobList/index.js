@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-debugger */
 import React, { useEffect, useState } from "react";
 import { useJob } from "../../../contexts/JobContext";
 import { GetFilteredAndSortedJobList, SortByNumber, SortByString } from "../../../utils";
@@ -21,7 +20,6 @@ const JobList = () => {
 
   useEffect(() => {
     const newList = GetFilteredAndSortedJobList(jobList, filters, currentSort, setFilteredJobList)
-    console.log(newList)
     setFilteredJobList([...newList])
   }, [currentSort.name, currentSort.priority, filters.priorities, filters.searchTerm, jobList, setFilteredJobList])
 

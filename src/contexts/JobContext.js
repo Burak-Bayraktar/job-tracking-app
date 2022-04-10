@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { SortByNumber } from "../utils";
 import { FindIndexTheItem, GetJobListFromLocalStorage, SetNewArrayToLocalStorage } from "./helpers/JobContextHelpers";
+import { axiosInstance } from "../axiosInstance";
 
 const NewJobModal = {
   job: "",
@@ -26,7 +26,7 @@ export const JobProvider = ({ children }) => {
 
   useEffect(() => {
     async function fetchPriorities() {
-      const res = await axios.get("http://localhost:5000/priority", (response) => ({response}));
+      const res = await axiosInstance.get('/priority', (res) => ({res}))
       setJobPriorities(res.data);
     }
 
