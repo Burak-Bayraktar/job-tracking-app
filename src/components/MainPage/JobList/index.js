@@ -16,19 +16,39 @@ const JobList = () => {
   const [selectedItem, setSelectedItem] = useState(NewJobModal);
   const [nameSortType, setNameSortType] = useState('asc');
   const [prioritySortType, setPrioritySortType] = useState('desc');
-  
-  useEffect(() => {
-    let sortedList = [];
+  const [currentSort, setCurrentSorts] = useState({ name: "", priority: "" })
+  let sortedList = [];
+  let filteredArray = [];
 
-    let filteredArray = filters.searchTerm && FilterBySearchTerm(jobList, filters.searchTerm)
-    sortedList = SortByString(filteredArray ? filteredArray : jobList, 'job', nameSortType)
-    
-    filteredArray = filters.priorities.id && FilterByPriority(jobList, filters.priorities)
+  useEffect(() => {
+    filteredArray = filters.searchTerm && FilterBySearchTerm(jobList, filters.searchTerm)
+    sortedList = SortByString(filteredArray ? filteredArray : jobList, 'job', nameSortType)    
+
+    setFilteredJobList([...sortedList])
+  }, [nameSortType])
+
+  useEffect(() => {
+    filteredArray = filters.priorities.id && FilterByPriority(sortedList, filters.priorities)
     sortedList = SortByNumber(filteredArray ? filteredArray : jobList, prioritySortType)
-    
-    
+
+    setFilteredJobList([...sortedList])
+  }, [prioritySortType])
+
+  useEffect(() => {
+    if (currentSort.name) {
+      filteredArray = filters.searchTerm && FilterBySearchTerm(jobList, filters.searchTerm)
+      sortedList = SortByString(filteredArray ? filteredArray : jobList, 'job', nameSortType)
+    }
+
+    if (currentSort.priority) {
+      filteredArray = filters.priorities.id && FilterByPriority(sortedList, filters.priorities)
+      sortedList = SortByNumber(filteredArray ? filteredArray : jobList, prioritySortType)
+    }
+
+    sortedList = sortedList.length ? sortedList : filteredJobList;
     setFilteredJobList([...sortedList])
   }, [jobList])
+
 
   const updateJob = (itemToUpdate) => {
     updateJobList(itemToUpdate)
@@ -45,12 +65,14 @@ const JobList = () => {
   const sortNameList = (arr) => {
     const sortedList = SortByString(arr, 'job', nameSortType)
     setNameSortType((prev) => setSortType(prev))
+    setCurrentSorts((prev) => ({priority: "", name: nameSortType}))
     setFilteredJobList([...sortedList])
   }
 
   const sortPriorityList = (arr) => {
     const sortedList = SortByNumber(arr, prioritySortType)
     setPrioritySortType(prev => setSortType(prev))
+    setCurrentSorts((prev) => ({name: "", priority: prioritySortType}))
     setFilteredJobList([...sortedList])
   }
 
