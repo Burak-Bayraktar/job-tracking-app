@@ -1,5 +1,7 @@
 # Job Tracking App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bc52b2ad-86af-4910-8899-6ad96813b643/deploy-status)](https://app.netlify.com/sites/effulgent-travesseiro-83132c/deploys)
+
 ## Installation
 
 App requires a server to run properly.
