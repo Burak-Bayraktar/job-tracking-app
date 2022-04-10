@@ -1,6 +1,8 @@
-const express = require("express"),
-  app = express(),
-  cors = require("cors");
+const express = require("express");
+const app = express();
+const http = require('http')
+const server = http.createServer(app)
+const cors = require("cors");
 
 app.use(cors());
 
@@ -24,4 +26,4 @@ app.get("/priority", async (req, res) => {
   ]);
 });
 
-app.listen(process.env.PORT || 5000);
+server.listen(process.env.PORT || 5000);

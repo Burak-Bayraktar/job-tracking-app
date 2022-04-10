@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-debugger */
 import React, { useEffect, useState } from "react";
 import { useJob } from "../../../contexts/JobContext";
-import { FilterByPriority, FilterBySearchTerm, SortByNumber, SortByString } from "../../../utils";
+import { GetFilteredAndSortedJobList, SortByNumber, SortByString } from "../../../utils";
 import DeleteModal from "../../shared/Modal/DeleteModal";
 import EditModal from "../../shared/Modal/EditModal";
 import JobItem from "../JobItem";
@@ -16,46 +17,20 @@ const JobList = () => {
   const [selectedItem, setSelectedItem] = useState(NewJobModal);
   const [nameSortType, setNameSortType] = useState('asc');
   const [prioritySortType, setPrioritySortType] = useState('desc');
-  const [currentSort, setCurrentSorts] = useState({ name: "", priority: "" })
-  let sortedList = [];
-  let filteredArray = [];
+  const [currentSort, setCurrentSort] = useState({ name: '', priority: 'desc' })
 
   useEffect(() => {
-    filteredArray = filters.searchTerm && FilterBySearchTerm(jobList, filters.searchTerm)
-    sortedList = SortByString(filteredArray ? filteredArray : jobList, 'job', nameSortType)    
-
-    setFilteredJobList([...sortedList])
-  }, [nameSortType])
-
-  useEffect(() => {
-    filteredArray = filters.priorities.id && FilterByPriority(sortedList, filters.priorities)
-    sortedList = SortByNumber(filteredArray ? filteredArray : jobList, prioritySortType)
-
-    setFilteredJobList([...sortedList])
-  }, [prioritySortType])
-
-  useEffect(() => {
-    if (currentSort.name) {
-      filteredArray = filters.searchTerm && FilterBySearchTerm(jobList, filters.searchTerm)
-      sortedList = SortByString(filteredArray ? filteredArray : jobList, 'job', nameSortType)
-    }
-
-    if (currentSort.priority) {
-      filteredArray = filters.priorities.id && FilterByPriority(sortedList, filters.priorities)
-      sortedList = SortByNumber(filteredArray ? filteredArray : jobList, prioritySortType)
-    }
-
-    sortedList = sortedList.length ? sortedList : filteredJobList;
-    setFilteredJobList([...sortedList])
-  }, [jobList])
-
+    const newList = GetFilteredAndSortedJobList(jobList, filters, currentSort, setFilteredJobList)
+    console.log(newList)
+    setFilteredJobList([...newList])
+  }, [currentSort.name, currentSort.priority, filters.priorities, filters.searchTerm, jobList, setFilteredJobList])
 
   const updateJob = (itemToUpdate) => {
     updateJobList(itemToUpdate)
   };
 
   const deleteJobItem = (jobToDelete) => {
-    deleteJob(jobToDelete.id)
+    deleteJob(jobToDelete)
   }
   
   const setSortType = (prev) => {
@@ -65,14 +40,14 @@ const JobList = () => {
   const sortNameList = (arr) => {
     const sortedList = SortByString(arr, 'job', nameSortType)
     setNameSortType((prev) => setSortType(prev))
-    setCurrentSorts((prev) => ({priority: "", name: nameSortType}))
+    setCurrentSort({ priority: '', name: nameSortType})
     setFilteredJobList([...sortedList])
   }
 
   const sortPriorityList = (arr) => {
     const sortedList = SortByNumber(arr, prioritySortType)
     setPrioritySortType(prev => setSortType(prev))
-    setCurrentSorts((prev) => ({name: "", priority: prioritySortType}))
+    setCurrentSort({ priority: prioritySortType, name: ''})
     setFilteredJobList([...sortedList])
   }
 
@@ -82,15 +57,15 @@ const JobList = () => {
         <div className="job-list__header">
           <div onClick={() => sortNameList(filteredJobList)} className="name">
             Name 
-              {
-                nameSortType === 'asc' ? <AscendingIcon /> : <DescendingIcon />
-              }
+            {
+              nameSortType === 'asc' ? <AscendingIcon /> : <DescendingIcon />
+            }
           </div>
           <div onClick={() => sortPriorityList(filteredJobList)} className="priority">
             Priority
-              {
-                prioritySortType === 'asc' ? <AscendingIcon /> : <DescendingIcon />
-              }
+            {
+              prioritySortType === 'asc' ? <AscendingIcon /> : <DescendingIcon />
+            }
           </div>
           <div className="action">Action</div>
         </div>
