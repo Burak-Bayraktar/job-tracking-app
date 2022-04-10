@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useJob } from "../../../contexts/JobContext";
 import { FilterByPriority, FilterBySearchTerm, SortByNumber, SortByString } from "../../../utils";
