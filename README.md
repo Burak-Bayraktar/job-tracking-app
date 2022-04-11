@@ -18,5 +18,5 @@ https://job-tracking-application.herokuapp.com/
 To start the project run the following commands;
 ```
 npm install
-npm run
+npm start
 ```
